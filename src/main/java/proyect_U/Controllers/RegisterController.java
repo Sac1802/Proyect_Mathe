@@ -24,11 +24,13 @@ public class RegisterController {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/register/get")
     public List<Register> findAll(){
         return registerRepository.findAll();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/register/getId/{id}")
     public ResponseEntity<Register> finById(@PathVariable Long id){
         Optional<Register> registerOptional = registerRepository.findById(id);
@@ -41,6 +43,7 @@ public class RegisterController {
         return response;
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/register/user")
     @Transactional
     public ResponseEntity<Register> saveRegister(@RequestBody Register register, UriComponentsBuilder

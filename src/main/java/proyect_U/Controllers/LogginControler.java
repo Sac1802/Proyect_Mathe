@@ -29,6 +29,7 @@ public class LogginControler {
         this.jsonWebToken = new JsonWebToken();
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/Login")
     @Transactional
     public ResponseEntity<Register> login(@RequestBody Register register ){

@@ -19,11 +19,13 @@ public class UsuarioController {
         this.usuarioRepository = usuarioRepository;
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/get")
     public List<Usuarios> findAll(){
         return usuarioRepository.findAll();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/getId/{id}")
     public ResponseEntity<Usuarios> findById(@PathVariable Long id){
         Optional<Usuarios> usuariosOptional = usuarioRepository.findById(id);
@@ -36,6 +38,7 @@ public class UsuarioController {
         return response;
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/save/user")
     @Transactional
     public ResponseEntity<Usuarios> create(@RequestBody Usuarios usuarios, UriComponentsBuilder uriComponentsBuilder){
@@ -47,6 +50,7 @@ public class UsuarioController {
         return ResponseEntity.created(url).body(usuarios);
     }
 
+    @CrossOrigin(origins = "*")
     @PutMapping("/update/user/{id}")
     @Transactional
     public ResponseEntity<Usuarios> update(@RequestBody Usuarios usuarios, @PathVariable Long id){

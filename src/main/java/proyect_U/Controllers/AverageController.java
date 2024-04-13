@@ -18,6 +18,7 @@ public class AverageController {
         this.averageRepository = averageRepository;
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/getId/averages/{id}")
     public ResponseEntity<Averages> getByIdAverages(@PathVariable Long id){
         ResponseEntity<Averages> response;
@@ -30,6 +31,7 @@ public class AverageController {
         return response;
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/save/average")
     public ResponseEntity<Averages> saveAverage(@RequestBody Averages averages, UriComponentsBuilder
             uriComponentsBuilder){

@@ -39,7 +39,7 @@ public class LogginControler {
         ResponseEntity response;
         if (user != null && passwordEncoder.matches(register.getPassword(), user.getPassword())){
             String token = jsonWebToken.generate(register);
-            response = ResponseEntity.ok().body(token);
+            response = ResponseEntity.ok().body("Bearer:" + token + " Id:" + user.getId());
         }else {
             response = ResponseEntity.noContent().build();
         }

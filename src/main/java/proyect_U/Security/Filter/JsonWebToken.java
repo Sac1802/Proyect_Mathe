@@ -3,28 +3,26 @@ package proyect_U.Security.Filter;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.DecodedJWT;
-import com.auth0.jwt.interfaces.JWTVerifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import proyect_U.Model.Register;
+import proyect_U.Repository.RegisterRepository;
 
 @Service
 public class JsonWebToken {
     String apiSecret = "DemoMath";
+    private RegisterRepository registerRepository;
     public JsonWebToken(){
     }
 
     public String generate(Register register){
         String response;
+        Register user = registerRepository.findByUsername(register.getUsername());
         try {
             Algorithm algorithm = Algorithm.HMAC256(apiSecret);
-            response = com.auth0.jwt.JWT.create()
+            response = JWT.create()
                     .withIssuer("Register")
                     .withSubject(register.getUsername())
-                    .withClaim("id", register.getId())
+                    .withClaim("id", user.getId())
                     .sign(algorithm);
         }catch (JWTCreationException exception){
             response = "Invalid Token";

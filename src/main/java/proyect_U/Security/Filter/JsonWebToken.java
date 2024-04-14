@@ -10,8 +10,9 @@ import proyect_U.Repository.RegisterRepository;
 @Service
 public class JsonWebToken {
     String apiSecret = "DemoMath";
-    private RegisterRepository registerRepository;
-    public JsonWebToken(){
+    private final RegisterRepository registerRepository;
+    public JsonWebToken(RegisterRepository registerRepository){
+        this.registerRepository = registerRepository;
     }
 
     public String generate(Register register){

@@ -26,7 +26,7 @@ public class LogginControler {
     public LogginControler(RegisterRepository registerRepository){
         this.passwordEncoder = new BCryptPasswordEncoder();
         this.registerRepository = registerRepository;
-        this.jsonWebToken = new JsonWebToken();
+        this.jsonWebToken = new JsonWebToken(registerRepository);
     }
 
     @CrossOrigin(origins = "*")
